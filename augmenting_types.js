@@ -1,9 +1,17 @@
 // By augmenting Function.prototype with a 'method' method, we no longer have
 // to type the of the 'prototype' property.
+// Function.prototype.method = function (name, func) {
+//     this.prototype[name] = func;
+//     return this;
+// };
+
+// Add a method conditionally.
 Function.prototype.method = function (name, func) {
-    this.prototype[name] = func;
-    return this;
-}
+    if ( !this.prototype[name] ) {
+        this.prototype[name] = func;
+        return this;
+    }
+};
 
 Number.method('integer', function () {
     return Math[this < 0 ? 'ceil' : 'floor'](this);
@@ -23,10 +31,3 @@ String.method('trim', function () {
 // must be taken when mixing libs. One defensive technique is to add a
 // method only if the method is known to be missing.
 
-// Add a method conditionally.
-Function.prototype.method = function (name, func) {
-    if ( !this.prototyp[name] ) {
-        this.prototype[name] = func;
-        return this;
-    }
-};

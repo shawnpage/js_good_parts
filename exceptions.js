@@ -5,10 +5,10 @@ var add = function (a, b) {
 		throw {
 			name: 'TypeError',
 			message: 'add needs numbers'
-		}
+		};
 	}
 	return a + b;
-}
+};
 
 // Make a try_it function that calls the new add
 // function incorrectly.
@@ -19,4 +19,4 @@ var try_it = function () {
 	} catch (e) {
 		console.log(e.name + ' : ' + e.message);
 	}
-}
+};
